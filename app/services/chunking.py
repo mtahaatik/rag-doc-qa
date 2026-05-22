@@ -52,4 +52,17 @@ def chunk_text(
     - Edge case: text shorter than chunk_size should produce 1 chunk
     - Edge case: overlap >= chunk_size is invalid, raise ValueError
     """
-    raise NotImplementedError("you implement chunking, see docstring")
+    encoded = _TOKENIZER.encode(text)
+    index = 0
+    return_list = []
+    if len(text) < chunk_size_tokens:
+      return _TOKENIZER.decode(encoded)
+    if overlap_tokens >= chunk_size:
+      raise ValueError("overlap cannot be bigger than the chunk size")
+    while index + chunk_size_tokens < len(text):
+      chunk = ''
+      for i + in range(chunk_size_tokens - overlap_tokens, chunk_size_tokens):
+         chunk.append(text[index + i])
+      return_list.append(_TOKENIZER.decode(chunk))
+      index += 1
+    return return_list
