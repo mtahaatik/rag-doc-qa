@@ -21,8 +21,8 @@ ENV PATH=/root/.local/bin:$PATH
 
 # Pre-download the embedding model so first request isn't slow
 # Comment this out if you don't want a fat image; tradeoff is cold start latency
-RUN python -c "from sentence_transformers import SentenceTransformer; \
-    SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')"
+# RUN python -c "from sentence_transformers import SentenceTransformer; \
+#     SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')"
 
 COPY app/ ./app/
 COPY tests/ ./tests/
