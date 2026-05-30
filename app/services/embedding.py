@@ -57,6 +57,6 @@ def embed(texts: list[str]) -> list[np.ndarray]:
         texts,
         convert_to_numpy=True,
         show_progress_bar=False,
-        # normalize_embeddings=True,  # uncomment after you decide
+        normalize_embeddings=True,  # uncomment after you decide
     )
     return [v for v in vectors]
