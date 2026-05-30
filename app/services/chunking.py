@@ -55,14 +55,13 @@ def chunk_text(
     encoded = _TOKENIZER.encode(text)
     index = 0
     return_list = []
-    if len(text) < chunk_size_tokens:
-      return _TOKENIZER.decode(encoded)
-    if overlap_tokens >= chunk_size:
+    if overlap_tokens >= chunk_size_tokens:
       raise ValueError("overlap cannot be bigger than the chunk size")
-    while index + chunk_size_tokens < len(text):
-      chunk = ''
-      for i + in range(chunk_size_tokens - overlap_tokens, chunk_size_tokens):
-         chunk.append(text[index + i])
-      return_list.append(_TOKENIZER.decode(chunk))
-      index += 1
+    step = chunk_size_tokens - overlap_tokens
+    if len(encoded) < chunk_size_tokens:
+      return [_TOKENIZER.decode(encoded)]
+    while index < len(encoded):
+      window = encoded[index:index + chunk_size_tokens]
+      return_list.append(_TOKENIZER.decode(window))
+      index += step
     return return_list
